@@ -7,16 +7,16 @@ import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-//import { TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 // import { ToastModule } from 'primeng/toast';
 // import { MenubarModule } from 'primeng/menubar';
 // import { TabMenuModule } from 'primeng/tabmenu';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { DropdownModule } from 'primeng/dropdown';
-// import { ConfirmDialogModule } from 'primeng/confirmdialog';
-// import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropdownModule } from 'primeng/dropdown';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 // import { MessagesModule } from 'primeng/messages';
-// import { DialogModule } from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 
 import { HomeComponent } from './home/home.component';
 import { ConnectionPageComponent } from './connection-page/connection-page.component';
@@ -30,16 +30,16 @@ import { ConnectionPageComponent } from './connection-page/connection-page.compo
     InputTextModule,
     FormsModule,
     ButtonModule,
-     //TableModule,
+    TableModule,
     // ToastModule,
     // MenubarModule,
     // TabMenuModule,
-    // BrowserAnimationsModule,
-   // DropdownModule,
-    // ConfirmDialogModule,
-    // DynamicDialogModule,
+    BrowserAnimationsModule,
+    DropdownModule,
+    ConfirmDialogModule,
+    DynamicDialogModule,
     // MessagesModule,
-    // DialogModule
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
