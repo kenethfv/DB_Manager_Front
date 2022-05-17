@@ -1,1 +1,146 @@
-<p>ACA IRÁ NUESTRA PAGINA PRINCIPAL DE NUESTRO PROYECTO DE BASE DE DATOS</p>
+<nav class="fondoBarra3 navbar navbar-expand-lg bg-light static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img
+        src="https://cdn.pixabay.com/photo/2017/09/28/22/43/database-search-2797375_960_720.png"
+        alt="..."
+        height="75"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+      <h1>Gestor de bases de datos</h1>
+    </div>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg bg-primary static-top"></nav>
+
+<br /><br />
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Crear conexión</h3>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="150"
+        height="150"
+        fill="currentColor"
+        class="bi bi-shield-plus"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 6.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"
+        />
+        <path
+          d="M8 4.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V9a.5.5 0 0 1-1 0V7.5H6a.5.5 0 0 1 0-1h1.5V5a.5.5 0 0 1 .5-.5z"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="card">
+
+    <div class="col-md-12" >
+        <button type="button" class="btn btn-outline-primary float-end" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                <path fill-rule="evenodd"
+                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+            </svg> Crear nuevo cliente</button>
+        <div class="col-md-7">
+            <h2 class="float-end">Clientes</h2>
+        </div>
+        <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success"
+           ></button>
+        <span class="">
+            <input type="text" pInputText placeholder="Buscar Nombre">
+        </span>
+    </div>
+
+
+    <h5 class="float-start">Cantidad de Conexiones:</h5>
+    <p-table [paginator]="false" [showCurrentPageReport]="false"
+        responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[5,10,15]" [scrollable]="true">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Clase Vía</th>
+                <th>Nombre Vía</th>
+                <th>Número Vía</th>
+                <th>Codigo postal</th>
+                <th>Ciudad</th>
+                <th>Teléfono</th>
+                <th>Observaciones</th>
+                <th>Editar/Eliminar</th>
+                <th>Detalles</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-c>
+            <tr>
+                <td>{{c.dniCl}}</td>
+                <td>{{c.nombreCl}}</td>
+                <td>{{c.apellido1}} {{c.apellido2}}</td>
+                <td>{{c.claseVia}}</td>
+                <td>{{c.nombreVia}}</td>
+                <td>{{c.numeroVia}}</td>
+                <td>{{c.codPostal}}</td>
+                <td>{{c.ciudad}}</td>
+                <td>{{c.telefono}}</td>
+                <td>{{c.observaciones}}</td>
+                <td>
+                    <button pButton pRipple type="button" icon="pi pi-user-edit"
+                        class="p-button-rounded p-button-warning" >
+                    </button>
+                    &nbsp;
+                    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"                       >
+                    </button>
+                </td>
+                <td>
+                    <button pButton pRipple type="button" icon="pi pi-list" class="p-button-rounded p-button-primary"
+                       >
+                    </button>
+                </td>
+
+            </tr>
+        </ng-template>
+
+    </p-table>
+    <div class="col-md-8 text-center">
+        <p-button type="button" icon="pi pi-angle-double-right"
+            styleClass="p-button-text" class="float-end"></p-button>
+        <p-button type="button" icon="pi pi-chevron-right"
+            styleClass="p-button-text" class="float-end"></p-button>
+        <p-button type="button" icon="pi pi-refresh" styleClass="p-button-text" class="float-end">
+        </p-button>
+        <p-button type="button" icon="pi pi-chevron-left"  [disabled]=primeraPagina
+            styleClass="p-button-text" class="float-end"></p-button>
+        <p-button type="button" icon="pi pi-angle-double-left" [disabled]=primeraPagina
+            styleClass="p-button-text" class="float-end"></p-button>
+        <font class="float-end" color="white">__</font>
+        <font [size]="5" class="float-end">Página  de </font>
+        <font class="float-end" color="white">__</font>
+        <p-dropdown [options]="lang" placeholder="Filas" optionLabel="name"
+            class="float-end">
+        </p-dropdown>
+        <font class="float-end" color="white">__</font>
+        <font [size]="5" class="float-end">Filas</font>
+    </div>
+</div> -->
