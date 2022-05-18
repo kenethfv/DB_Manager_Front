@@ -1,1 +1,180 @@
-<p>ACA IRÁ NUESTRA PAGINA PRINCIPAL DE NUESTRO PROYECTO DE BASE DE DATOS</p>
+<nav class="fondoBarra3 navbar navbar-expand-lg bg-light static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img
+        src="https://cdn.pixabay.com/photo/2017/09/28/22/43/database-search-2797375_960_720.png"
+        alt="..."
+        height="75"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+      <h1>Gestor de bases de datos</h1>
+    </div>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg bg-primary static-top"></nav>
+
+<br /><br />
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6"  >
+      <h3>Crear conexión</h3>
+      <i class="pi pi-database" style="font-size: 11rem" (click)="formularioComponent()"></i>
+    </div>
+  </div>
+</div>
+
+<br /><br />
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 float-end">
+      <div class="card">
+        <div class="col-md-12">
+          <!-- <button type="button" class="btn btn-outline-primary float-end">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            fill="currentColor"
+            class="bi bi-person-plus-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"
+            />
+          </svg>
+          Crear nuevo cliente
+        </button> -->
+          <div class="col-md-7">
+            <h2 class="float-end">Conexiones realizadas</h2>
+          </div>
+          <!-- <button
+          pButton
+          pRipple
+          type="button"
+          icon="pi pi-search"
+          class="p-button-rounded p-button-success"
+        ></button>
+        <span class="">
+          <input type="text" pInputText placeholder="Buscar Nombre" />
+        </span> -->
+        </div>
+
+        <h5 class="float-start">Cantidad de Conexiones:</h5>
+        <p-table
+          [value]="conexiones"
+          [paginator]="false"
+          [showCurrentPageReport]="false"
+          responsiveLayout="scroll"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [rowsPerPageOptions]="[5, 10, 15]"
+          [scrollable]="true"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Esquema</th>
+              <th>Usuario</th>
+              <th>Opciones</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-c>
+            <tr>
+              <td>{{ c.esquema }}</td>
+              <td>{{ c.usuario }}</td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-pencil"
+                  class="p-button-rounded p-button-warning"
+                ></button>
+                &nbsp;
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-times"
+                  class="p-button-rounded p-button-danger"
+                ></button>
+                &nbsp;
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  icon="pi pi-list"
+                  class="p-button-rounded p-button-primary"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+        <div class="col-md-8 text-center">
+          <p-button
+            type="button"
+            icon="pi pi-angle-double-right"
+            styleClass="p-button-text"
+            class="float-end"
+          ></p-button>
+          <p-button
+            type="button"
+            icon="pi pi-chevron-right"
+            styleClass="p-button-text"
+            class="float-end"
+          ></p-button>
+          <p-button
+            type="button"
+            icon="pi pi-refresh"
+            styleClass="p-button-text"
+            class="float-end"
+          >
+          </p-button>
+          <p-button
+            type="button"
+            icon="pi pi-chevron-left"
+            [disabled]="primeraPagina"
+            styleClass="p-button-text"
+            class="float-end"
+          ></p-button>
+          <p-button
+            type="button"
+            icon="pi pi-angle-double-left"
+            [disabled]="primeraPagina"
+            styleClass="p-button-text"
+            class="float-end"
+          ></p-button>
+          <font class="float-end" color="white">__</font>
+          <font [size]="5" class="float-end">Página de </font>
+          <font class="float-end" color="white">__</font>
+          <p-dropdown
+            [options]="lang"
+            placeholder="Filas"
+            optionLabel="name"
+            class="float-end"
+          >
+          </p-dropdown>
+          <font class="float-end" color="white">__</font>
+          <font [size]="5" class="float-end">Filas</font>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
