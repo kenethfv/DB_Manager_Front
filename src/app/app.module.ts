@@ -23,15 +23,14 @@ import { ConnectionPageComponent } from './connection-page/connection-page.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-<<<<<<< HEAD
+
   declarations: [
     AppComponent,
     HomeComponent,
     ConnectionPageComponent,
     DashboardComponent
   ],
-=======
-  declarations: [AppComponent, HomeComponent, ConnectionPageComponent, DashboardComponent],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
