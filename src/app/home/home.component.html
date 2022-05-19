@@ -28,12 +28,19 @@
 <br /><br />
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-6"  >
-      <h3>Crear conexión</h3>
-      <i class="pi pi-database" style="font-size: 11rem" (click)="formularioComponent()"></i>
-    </div>
-  </div>
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="formularioComponent()"
+  >
+    <i
+      class="pi pi-database"
+      style="font-size: 3rem"
+      (click)="formularioComponent()"
+    ></i>
+
+    <h5>Crear nueva conexión</h5>
+  </button>
 </div>
 
 <br /><br />

@@ -4,13 +4,14 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 @Component({
   selector: 'app-connection-page',
   templateUrl: './connection-page.component.html',
-  styleUrls: ['./connection-page.component.scss']
+  styleUrls: ['./connection-page.component.scss'],
 })
 export class ConnectionPageComponent implements OnInit {
+  formProperties: any = {};
 
-  constructor(public ref: DynamicDialogRef) { }
+  constructor(public ref: DynamicDialogRef) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  enviarFormulario() {}
 }
