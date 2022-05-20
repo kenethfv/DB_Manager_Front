@@ -3,11 +3,67 @@
     margin: 3rem;
     padding: 2rem;
     border: 2px solid gray;
-    text-align: center;
+    //text-align: center;
 }
 
-.area {
-    width: 25rem;
-    height: 18rem;
+#contenedor {
+    width: 1200px;
+    height: 1000px;
+    background-color: #d8d8d8;
+    margin: 0.5em auto;
+    padding: 0.5em;
 }
 
+#header {
+    height: 20%;
+    background-color: #a4a4a4;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+#contenido {
+    height: 70%;
+    background-color: #EDBB99;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+#aside {
+    height: 100%;
+    width: 30%;
+    background-color: #a4a4a4;
+    border-radius: 1em;
+    float: left;
+}
+
+#pizarra {
+    height: 70%;
+    width: 69%;
+    background-color: #919291;
+    border-radius: 1em;
+    float: right;
+}
+
+#resultado {
+    height: 30%;
+    width: 69%;
+    background-color: #919291;
+    border-radius: 1em;
+    float: right;
+}
+
+#editor {
+    border-radius: 1em;
+    height: 90%;
+    width: 100%;
+    float: bottom;
+    padding: 0.5em;
+}
+
+#result {
+    border-radius: 1em;
+    height: 80%;
+    width: 100%;
+    float: bottom;
+    padding: 0.5em;
+}
