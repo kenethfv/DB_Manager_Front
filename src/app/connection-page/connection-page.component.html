@@ -12,7 +12,7 @@
     />
   </div>
 
-  <form id="crearPerito" >
+  <form id="crearConexion" >
     <br />
     <div class="row ">
       <div class="col-md-6">
@@ -35,15 +35,15 @@
         <div class="mb-4">
           <span class="p-float-label">
             <input
-              type="number"
+              type="text"
               pInputText
               class="form-control"
               required
               maxlength="40"
-              [(ngModel)]="formProperties.port"
+              [(ngModel)]="formProperties.name"
               [ngModelOptions]="{ standalone: true }"
             />
-            <label class="form-label">Puerto</label>
+            <label class="form-label">Nombre</label>
           </span>
         </div>
       </div>
@@ -78,12 +78,6 @@
           </span>
         </div>
       </div>
-
-
-
-
-
-
       <div>
         <button
           type="button"

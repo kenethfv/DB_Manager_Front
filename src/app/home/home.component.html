@@ -50,38 +50,11 @@
     <div class="col-md-12 float-end">
       <div class="card">
         <div class="col-md-12">
-          <!-- <button type="button" class="btn btn-outline-primary float-end">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="50"
-            fill="currentColor"
-            class="bi bi-person-plus-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-            <path
-              fill-rule="evenodd"
-              d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"
-            />
-          </svg>
-          Crear nuevo cliente
-        </button> -->
+
           <div class="col-md-7">
             <h2 class="float-end">Conexiones realizadas</h2>
           </div>
-          <!-- <button
-          pButton
-          pRipple
-          type="button"
-          icon="pi pi-search"
-          class="p-button-rounded p-button-success"
-        ></button>
-        <span class="">
-          <input type="text" pInputText placeholder="Buscar Nombre" />
-        </span> -->
+
         </div>
 
         <h5 class="float-start">Cantidad de Conexiones:</h5>
@@ -96,15 +69,19 @@
         >
           <ng-template pTemplate="header">
             <tr>
-              <th>Esquema</th>
+              <th>ID</th>
+              <th>Host</th>
+              <th>Nombre</th>
               <th>Usuario</th>
               <th>Opciones</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-c>
             <tr>
-              <td>{{ c.esquema }}</td>
-              <td>{{ c.usuario }}</td>
+              <td>{{ c.ConnectionId }}</td>
+              <td>{{ c.Host }}</td>
+              <td>{{ c.Name }}</td>
+              <td>{{ c.User }}</td>
               <td>
                 <button
                   pButton
@@ -134,7 +111,7 @@
           </ng-template>
         </p-table>
 
-        <div class="col-md-8 text-center">
+        <!-- <div class="col-md-8 text-center">
           <p-button
             type="button"
             icon="pi pi-angle-double-right"
@@ -180,7 +157,7 @@
           </p-dropdown>
           <font class="float-end" color="white">__</font>
           <font [size]="5" class="float-end">Filas</font>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
