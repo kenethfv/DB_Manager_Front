@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class ConnectionService {
+export class DashboardService {
   constructor(private http: HttpClient) {}
 
   private consumirGet(url: string): Observable<any> {
@@ -29,16 +29,7 @@ export class ConnectionService {
     return throwError('Ha ocurrido un error');
   }
 
-  getConnections() {
-    return this.consumirGet('/connections');
+  getTables(data: any) {
+    return this.consumirPost('/tables', data);
   }
-
-  login(data: any) {
-    return this.consumirPost('/login', data);
-  }
-
-  guardarConexion(data: any) {
-    return this.consumirPost('/connections', data);
-  }
-
 }

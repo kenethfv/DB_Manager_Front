@@ -51,6 +51,7 @@ export class ConnectionPageComponent implements OnInit {
   finalizarGuardar(respuesta: any) {
     console.log(respuesta);
     if (respuesta.message == 'Connection Success') {
+      //**/Agregar al local Storage */
       this.irADashboard();
     } else if (!respuesta) {
       this.showDialog();
