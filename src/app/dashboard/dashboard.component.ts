@@ -11,6 +11,9 @@ import { Component, OnInit } from '@angular/core';
 
 export class DashboardComponent implements OnInit {
 
+  tablas = ["empleados","puestos","departamentos"];
+   
+
 
   static selectableTextArea: NodeListOf<Element>;
   
@@ -36,10 +39,20 @@ export class DashboardComponent implements OnInit {
       alert("running delete script")
     }
 
+    //const selectedText = window.getSelection()?.toString().trim();
+    if(selectedText){
+      this.tablas.push(selectedText);
+      console.log(this.tablas);
+    
+    }
     
   }
+
   
 
+
+  
+   
   constructor() { 
     
   }
@@ -59,6 +72,11 @@ export class DashboardComponent implements OnInit {
       
     }
 
+    
+    
+
+
+    
     
   }
 
