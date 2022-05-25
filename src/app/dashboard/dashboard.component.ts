@@ -81,9 +81,9 @@ export class DashboardComponent implements OnInit {
       .getTables(this.objeto)
       .subscribe((res: any) => this.finalizarGuardar(res));
 
-      this.dashboardService
-      .getTables(this.objeto)
-      .subscribe((res: any) => this.finalizarGuardar(res));
+      // this.dashboardService
+      // .cualquiercosa(this.objeto)
+      // .subscribe((res: any) => this.finalizarGuardar(res));
   }
 
   finalizarGuardar(respuesta: any) {

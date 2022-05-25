@@ -9,11 +9,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class DashboardService {
   constructor(private http: HttpClient) {}
 
+  //
   private consumirGet(url: string): Observable<any> {
     return this.http
       .get<any>(environment.urlService + url)
       .pipe(catchError((e) => this.manejarError(e)));
   }
+  //
 
   private consumirPost(url: string, parametro: any): Observable<any> {
     let httpOptions = {
@@ -32,4 +34,9 @@ export class DashboardService {
   getTables(data: any) {
     return this.consumirPost('/tables', data);
   }
+
+  cualquiercosa(data: any) {
+    return this.consumirPost('/tables', data);
+  }
+
 }
