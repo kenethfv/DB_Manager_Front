@@ -12,7 +12,8 @@ export class ConnectionPageComponent implements OnInit {
   formProperties: any = {};
   formLogin: any = {};
   display: boolean = false;
-  fuinciona: boolean = false;
+  funciona: boolean = false;
+
 
   constructor(
     public ref: DynamicDialogRef,
@@ -20,13 +21,11 @@ export class ConnectionPageComponent implements OnInit {
     public config: DynamicDialogConfig
   ) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   enviarFormulario() {
     let formulario: any = document.getElementById('crearConexiones');
-    this.fuinciona = false;
+    this.funciona = false;
 
     this.formLogin.host = this.formProperties.host;
     this.formLogin.user = this.formProperties.user;
@@ -44,7 +43,7 @@ export class ConnectionPageComponent implements OnInit {
       formulario.reset();
       this.formProperties = {};
       this.formLogin = {};
-      this.fuinciona = true;
+      this.funciona = true;
     }
   }
 
@@ -53,14 +52,14 @@ export class ConnectionPageComponent implements OnInit {
     if (respuesta.message == 'Connection Success') {
       //**/Agregar al local Storage */
       this.irADashboard();
-    } else if (!respuesta) {
+    }
+
+    if ((this.funciona = false)) {
       this.showDialog();
     }
   }
 
-  finalizarGuardarConexion(respuesta: any) {
-
-  }
+  finalizarGuardarConexion(respuesta: any) {}
 
   irADashboard() {
     location.href = '/dashboard';

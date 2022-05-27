@@ -8,19 +8,20 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-// import { ToastModule } from 'primeng/toast';
+ import { ToastModule } from 'primeng/toast';
 // import { MenubarModule } from 'primeng/menubar';
 // import { TabMenuModule } from 'primeng/tabmenu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
-// import { MessagesModule } from 'primeng/messages';
+ import { MessagesModule } from 'primeng/messages';
 import { DialogModule } from 'primeng/dialog';
 
 import { HomeComponent } from './home/home.component';
 import { ConnectionPageComponent } from './connection-page/connection-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
 
@@ -39,14 +40,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormsModule,
     ButtonModule,
     TableModule,
-    // ToastModule,
+     ToastModule,
     // MenubarModule,
     // TabMenuModule,
     BrowserAnimationsModule,
     DropdownModule,
     ConfirmDialogModule,
     DynamicDialogModule,
-    // MessagesModule,
+     MessagesModule,
     DialogModule,
   ],
   providers: [],
