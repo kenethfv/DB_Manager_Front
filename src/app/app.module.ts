@@ -49,7 +49,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     // MessagesModule,
     DialogModule,
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

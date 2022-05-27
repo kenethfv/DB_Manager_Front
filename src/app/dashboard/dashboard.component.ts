@@ -2,6 +2,7 @@ import { BindingScope } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard_services/dashboard.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,48 +14,18 @@ export class DashboardComponent implements OnInit {
   objeto: any = {};
   response: any = {};
   data: any = [];
-
   host: String = 'db-manager-umg.cusjupztirzz.us-east-1.rds.amazonaws.com';
-
   static selectableTextArea: NodeListOf<Element>;
+  //selectedText: String = "";
 
-  limpiarEditor() {
-    let limpiaTexto = ((<HTMLInputElement>(
-      document.getElementById('editor')
-    )).value = '');
-  }
-
-  limpiarResultado() {
-    let limpiaTexto = ((<HTMLInputElement>(
-      document.getElementById('result')
-    )).value = '');
-  }
-
-  agregaTexto() {
-    let limpiaTexto = 'Answer from service will go here ';
-    let agrega = ((<HTMLInputElement>document.getElementById('result')).value =
-      limpiaTexto);
-
-    const selectedText = window.getSelection()?.toString().trim();
-    const regSelect = /select [a-zA-Z1-9*=<>+^(),.%/ ]+\;/gi;
-    const regDelete = /delete [a-zA-Z1-9*=<>+^(),.%/ ]+\;/gi;
-
-    if (selectedText?.match(regSelect)) {
-      alert('running select script');
-    } else if (selectedText?.match(regDelete)) {
-      alert('running delete script');
-    }
-
-    //const selectedText = window.getSelection()?.toString().trim();
-    if (selectedText) {
-      this.tablas.push(selectedText);
-      console.log(this.tablas);
-    }
-  }
+  
 
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
+    
+    //this.llenarTablas(this.tablas);
+    this.llamarMetodo();
     DashboardComponent.selectableTextArea =
       document.querySelectorAll('#editor');
 
@@ -63,13 +34,128 @@ export class DashboardComponent implements OnInit {
     });
 
     function selectableTextAreaMouseUp() {
-      const selectedText = window.getSelection()?.toString().trim();
-      console.log(selectedText);
+      let selectedText = window.getSelection()?.toString().trim();
       let addTextToResult: string = ((<HTMLInputElement>(
         document.getElementById('resultado')
       )).value = selectedText || '');
     }
   }
+
+ 
+  
+
+
+
+  limpiarEditor() {
+    let limpiaTexto = ((<HTMLInputElement>(
+      document.getElementById('editor')
+    )).value = '');
+  }
+
+  limpiarResultado() {
+    let claseError = document.querySelector('.error')
+    let claseSuccess = document.querySelector('.success')
+    const div = document.querySelector('#resultado');
+    claseError?.remove();
+    claseSuccess?.remove();
+  }
+
+  mostrarResultado() {
+    const selectedText = window.getSelection()?.toString().trim();
+    console.log("texto: "+selectedText)
+    const regSelect = /select [a-zA-Z1-9*=<>+^(),.%/ ]+\;/gi;
+    const regDelete = /delete [a-zA-Z1-9*=<>+^(),.%/ ]+\;/gi;
+
+    
+    let queryObject:any = {};
+    queryObject.host = this.host;
+    queryObject.user = 'admin';
+    queryObject.password = 'd2cany8bdwypjtACDvaq';
+    queryObject.database = 'test';
+    queryObject.query = selectedText;
+
+    if (selectedText?.match(regSelect)) {
+      //alert('running select script');
+      this.dashboardService
+      .dashboardQuery(queryObject)
+      .subscribe((res: any) => this.respuestaQuery(res));
+    } else /*if (selectedText?.match(regDelete))*/ {
+      //alert('running delete script');
+      this.dashboardService
+      .dashboardQuery(queryObject)
+      .subscribe((res: any) => this.resQuery(res));
+    } 
+    
+
+      /*let limpiaTexto = 'Answer from service will go here ';
+      let agrega = ((<HTMLInputElement>document.getElementById('result')).value =
+      limpiaTexto);*/
+  }
+
+  respuestaQuery(respuesta: any) {
+    this.response = respuesta;
+    this.data = this.response.data;
+    console.log(this.data);
+    this.queryInfo(this.data);
+  }
+
+  queryInfo(info:any){
+    console.log(info);
+    const div = document.querySelector('#resultado');
+    const tb = document.createElement('table');
+    tb.className = "success"
+    const tr = document.createElement('tr');
+    let objectProp = Object.keys(info[0])
+
+    objectProp.forEach((pr:any) => {
+      let header = document.createElement('th');
+      let headerText = document.createTextNode(pr)
+      header.appendChild(headerText)
+      tr.appendChild(header)
+             
+    });
+    tb.appendChild(tr);
+  
+    info.forEach((arr:any, index:number) => {   
+      let objectValue = Object.values(info[index])  
+      const tr2 = document.createElement('tr');
+      objectValue.forEach((val:any) => {
+        let header = document.createElement('td');
+        let headerText = document.createTextNode(val)
+        header.appendChild(headerText)
+        tr2.appendChild(header)         
+      });
+      tb.appendChild(tr2);
+    
+    });    
+    div?.appendChild(tb);
+  }
+
+  resQuery(respuesta: any) {
+    this.response = respuesta;
+    this.data = this.response.data;
+    
+    console.log(this.response);
+    this.queryInfo2(this.response)
+    
+  }
+
+  queryInfo2(info:any){
+    console.log(info)
+    const status = info.statusCode;
+    const data = info.data;
+    const div = document.querySelector('#resultado');
+    const p = document.createElement('p');
+    let statusText = document.createTextNode(`Operacion exitosa => StatusCode: ${status}`)
+    p.appendChild(statusText)
+    p.className = "success";
+    for(let val in data){
+      let text = document.createTextNode(`${val}: ${data[val]}`)
+      p.appendChild(text)
+    }
+    div?.appendChild(p);
+  }
+
 
   llamarMetodo() {
     this.objeto.host = this.host;
@@ -80,17 +166,35 @@ export class DashboardComponent implements OnInit {
     this.dashboardService
       .getTables(this.objeto)
       .subscribe((res: any) => this.finalizarGuardar(res));
-
-      // this.dashboardService
-      // .cualquiercosa(this.objeto)
-      // .subscribe((res: any) => this.finalizarGuardar(res));
   }
+
+  
 
   finalizarGuardar(respuesta: any) {
     this.response = respuesta;
-
     this.data = this.response.data;
-
-    console.log(this.data[1].table);
+    console.log(this.response);
+    console.log(this.data);
+    this.llenarTablas(this.data)
   }
+
+  llenarTablas(tb:any){
+    let claseTabla = document.querySelector('.lista-tablas')
+    claseTabla?.remove();
+    const div = document.querySelector('#aside');
+    const lista = document.createElement('ul');
+    lista.className = "lista-tablas";
+    tb.forEach((object:any) => {
+      for(let value in object){
+        console.log(object[value])
+        let line = document.createElement('li');
+        let textLine = document.createTextNode(object[value])
+        line.appendChild(textLine)
+        lista.appendChild(line)
+      }       
+  });
+
+  div?.appendChild(lista);
+  }
+
 }

@@ -33,6 +33,7 @@
     width: 30%;
     background-color: #a4a4a4;
     border-radius: 1em;
+    padding: 0.5em;
     float: left;
 }
 
@@ -45,11 +46,18 @@
 }
 
 #resultado {
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
     height: 30%;
     width: 69%;
-    background-color: #919291;
+    background-color: #ffffff;
     border-radius: 1em;
     float: right;
+    overflow: scroll;
 }
 
 #editor {
@@ -61,6 +69,7 @@
 }
 
 #result {
+
     border-radius: 1em;
     height: 80%;
     width: 100%;
@@ -75,3 +84,17 @@
     font-size: 20px;
     padding: 0.5em;
 }
+
+#header-aside-1 {
+    height: 7.5%;
+    background-color: #fcf9f9;
+    border-radius: 1em;
+    font-size: 20px;
+    padding: 0.5em;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
