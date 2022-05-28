@@ -53,4 +53,9 @@ export class DashboardService {
     return this.consumirPost('/querys', data);
   }
 
+
+  getDatabases(data: any) {
+    return this.consumirPost('/database', data);
+  }
+
 }

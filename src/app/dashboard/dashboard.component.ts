@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   data: any = [];
   host: String = 'db-manager-umg.cusjupztirzz.us-east-1.rds.amazonaws.com';
   static selectableTextArea: NodeListOf<Element>;
+  dbname: String = "";
   //selectedText: String = "";
 
   //objeto de local storage
@@ -28,7 +29,6 @@ export class DashboardComponent implements OnInit {
       location.href = '/';
     } else {
       //this.llenarTablas(this.tablas);
-      this.llamarMetodo();
       DashboardComponent.selectableTextArea =
         document.querySelectorAll('#editor');
 
@@ -72,7 +72,7 @@ export class DashboardComponent implements OnInit {
     queryObject.host = this.host;
     queryObject.user = this.usuarioConectado.user;
     queryObject.password = this.usuarioConectado.password;
-    queryObject.database = 'test';
+    queryObject.database = this.dbname;
     queryObject.query = selectedText;
 
     if (selectedText?.match(regSelect)) {
@@ -159,7 +159,7 @@ export class DashboardComponent implements OnInit {
     this.objeto.host = this.host;
     this.objeto.user = this.usuarioConectado.user;
     this.objeto.password = this.usuarioConectado.password;
-    this.objeto.database = 'test';
+    this.objeto.database = this.dbname;
 
     this.dashboardService
       .getTables(this.objeto)
@@ -193,6 +193,45 @@ export class DashboardComponent implements OnInit {
     div?.appendChild(lista);
   }
 
+
+
+  obtenerBase() {
+    this.objeto.host = this.host;
+    this.objeto.user = this.usuarioConectado.user;
+    this.objeto.password = this.usuarioConectado.password;
+
+    this.dashboardService
+      .getDatabases(this.objeto)
+      .subscribe((res: any) => this.finalizarGuardarBase(res));
+  }
+
+  finalizarGuardarBase(respuesta: any) {
+    this.response = respuesta;
+    this.data = this.response.data;
+    console.log(this.response);
+    console.log(this.data);
+    this.llenarBase(this.data);
+  }
+
+  llenarBase(tb: any) {
+    let claseTabla = document.querySelector('.lista-database');
+    claseTabla?.remove();
+    const div = document.querySelector('#aside');
+    const lista = document.createElement('ul');
+    lista.className = 'lista-database';
+    tb.forEach((object: any) => {
+      for (let value in object) {
+        console.log(object[value]);
+        let line = document.createElement('li');
+        let textLine = document.createTextNode(object[value]);
+        line.appendChild(textLine);
+        lista.appendChild(line);
+      }
+    });
+
+    div?.appendChild(lista);
+  }
+
   //OBTENER INFO DE USUARIO CONECTADO DE
   obtener_localStorage() {
     this.usuarioConectado = JSON.parse(localStorage.getItem('dataConection')!);
@@ -203,5 +242,10 @@ export class DashboardComponent implements OnInit {
   cerrarSecion(){
     localStorage.removeItem('dataConection');
     location.href = '/';
+  }
+
+  baseNombre(){
+    this.llamarMetodo();
+
   }
 }
