@@ -177,7 +177,7 @@ export class DashboardComponent implements OnInit {
   llenarTablas(tb: any) {
     let claseTabla = document.querySelector('.lista-tablas');
     claseTabla?.remove();
-    const div = document.querySelector('#aside');
+    const div = document.querySelector('#aside-1-2');
     const lista = document.createElement('ul');
     lista.className = 'lista-tablas';
     tb.forEach((object: any) => {
@@ -216,7 +216,7 @@ export class DashboardComponent implements OnInit {
   llenarBase(tb: any) {
     let claseTabla = document.querySelector('.lista-database');
     claseTabla?.remove();
-    const div = document.querySelector('#aside');
+    const div = document.querySelector('#aside-1-1');
     const lista = document.createElement('ul');
     lista.className = 'lista-database';
     tb.forEach((object: any) => {
