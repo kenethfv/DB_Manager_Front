@@ -45,6 +45,7 @@ export class DashboardComponent implements OnInit {
 
       //
       this.obtener_localStorage();
+      this.obtenerBase()
     }
   }
 
