@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
 
     this.infoStorage.host = this.infoConexion.host;
     this.infoStorage.user = this.infoConexion.user;
-    this.infoStorage.password = this.infoStorage.password;
+    this.infoStorage.password = this.infoConexion.password;
     this.infoStorage.name = info.Name;
 
     console.log(this.infoConexion);
