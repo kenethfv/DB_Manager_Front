@@ -65,8 +65,8 @@ export class DashboardComponent implements OnInit {
 
     let queryObject: any = {};
     queryObject.host = this.host;
-    queryObject.user = 'admin';
-    queryObject.password = 'd2cany8bdwypjtACDvaq';
+    queryObject.user = this.usuarioConectado.user;
+    queryObject.password = this.usuarioConectado.password;
     queryObject.database = 'test';
     queryObject.query = selectedText;
 
@@ -152,8 +152,8 @@ export class DashboardComponent implements OnInit {
 
   llamarMetodo() {
     this.objeto.host = this.host;
-    this.objeto.user = 'admin';
-    this.objeto.password = 'd2cany8bdwypjtACDvaq';
+    this.objeto.user = this.usuarioConectado.user;
+    this.objeto.password = this.usuarioConectado.password;
     this.objeto.database = 'test';
 
     this.dashboardService
