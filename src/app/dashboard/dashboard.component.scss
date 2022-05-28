@@ -1,4 +1,4 @@
-.container { 
+.container {
     background-color: gainsboro;
     margin: 3rem;
     padding: 2rem;
@@ -35,6 +35,7 @@
     border-radius: 1em;
     padding: 0.5em;
     float: left;
+    position: relative;
 }
 
 
@@ -45,6 +46,7 @@
     border-radius: 1em;
     padding: 0.5em;
     float: bottom;
+
 }
 
 #pizarra {

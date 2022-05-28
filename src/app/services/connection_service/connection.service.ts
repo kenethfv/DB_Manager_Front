@@ -11,7 +11,7 @@ export class ConnectionService {
 
   private consumirGet(url: string): Observable<any> {
     return this.http
-      .get<any>(environment.urlService + url)
+      .get<any>(`https://gcccnx9do8.execute-api.us-east-1.amazonaws.com/prod${url}`)
       .pipe(catchError((e) => this.manejarError(e)));
   }
 
@@ -20,7 +20,7 @@ export class ConnectionService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
     return this.http
-      .post<any>(environment.urlService + url, parametro, httpOptions)
+      .post<any>(`https://gcccnx9do8.execute-api.us-east-1.amazonaws.com/prod${url}`, parametro, httpOptions)
       .pipe(catchError((e) => this.manejarError(e)));
   }
 
