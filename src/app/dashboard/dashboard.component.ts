@@ -23,24 +23,29 @@ export class DashboardComponent implements OnInit {
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
-    //this.llenarTablas(this.tablas);
-    this.llamarMetodo();
-    DashboardComponent.selectableTextArea =
-      document.querySelectorAll('#editor');
+    let usuario = JSON.parse(localStorage.getItem('dataConection')!);
+    if (!usuario) {
+      location.href = '/';
+    } else {
+      //this.llenarTablas(this.tablas);
+      this.llamarMetodo();
+      DashboardComponent.selectableTextArea =
+        document.querySelectorAll('#editor');
 
-    DashboardComponent.selectableTextArea.forEach((element) => {
-      element.addEventListener('mouseup', selectableTextAreaMouseUp);
-    });
+      DashboardComponent.selectableTextArea.forEach((element) => {
+        element.addEventListener('mouseup', selectableTextAreaMouseUp);
+      });
 
-    function selectableTextAreaMouseUp() {
-      let selectedText = window.getSelection()?.toString().trim();
-      let addTextToResult: string = ((<HTMLInputElement>(
-        document.getElementById('resultado')
-      )).value = selectedText || '');
+      function selectableTextAreaMouseUp() {
+        let selectedText = window.getSelection()?.toString().trim();
+        let addTextToResult: string = ((<HTMLInputElement>(
+          document.getElementById('resultado')
+        )).value = selectedText || '');
+      }
+
+      //
+      this.obtener_localStorage();
     }
-
-    //
-    this.obtener_localStorage();
   }
 
   limpiarEditor() {
@@ -191,7 +196,12 @@ export class DashboardComponent implements OnInit {
   //OBTENER INFO DE USUARIO CONECTADO DE
   obtener_localStorage() {
     this.usuarioConectado = JSON.parse(localStorage.getItem('dataConection')!);
-    console.log("EL USUARIO LOGUEADO ES:");
+    console.log('EL USUARIO LOGUEADO ES:');
     console.log(this.usuarioConectado);
+  }
+
+  cerrarSecion(){
+    localStorage.removeItem('dataConection');
+    location.href = '/';
   }
 }

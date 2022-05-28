@@ -35,21 +35,19 @@ export class ConnectionPageComponent implements OnInit {
         .login(this.formLogin)
         .subscribe((res: any) => this.finalizarGuardar(res));
 
-      this.connectionService
-        .guardarConexion(this.formProperties)
-        .subscribe((res: any) => this.finalizarGuardarConexion(res));
-
       formulario.reset();
 
       this.formLogin = {};
       this.funciona = true;
-      this.formProperties = {};
     }
   }
 
   finalizarGuardar(respuesta: any) {
     console.log(respuesta);
     if (respuesta.message == 'Connection Success') {
+      this.connectionService
+        .guardarConexion(this.formProperties)
+        .subscribe((res: any) => this.finalizarGuardarConexion(res));
       this.irADashboard();
     }
 
@@ -60,6 +58,7 @@ export class ConnectionPageComponent implements OnInit {
 
   finalizarGuardarConexion(respuesta: any) {
     this.grabar_localstorage(this.formProperties);
+    this.formProperties = {};
   }
 
   irADashboard() {
