@@ -14,7 +14,6 @@ export class ConnectionPageComponent implements OnInit {
   display: boolean = false;
   funciona: boolean = false;
 
-
   constructor(
     public ref: DynamicDialogRef,
     private connectionService: ConnectionService,
@@ -41,16 +40,16 @@ export class ConnectionPageComponent implements OnInit {
         .subscribe((res: any) => this.finalizarGuardarConexion(res));
 
       formulario.reset();
-      this.formProperties = {};
+
       this.formLogin = {};
       this.funciona = true;
+      this.formProperties = {};
     }
   }
 
   finalizarGuardar(respuesta: any) {
     console.log(respuesta);
     if (respuesta.message == 'Connection Success') {
-      //**/Agregar al local Storage */
       this.irADashboard();
     }
 
@@ -59,7 +58,9 @@ export class ConnectionPageComponent implements OnInit {
     }
   }
 
-  finalizarGuardarConexion(respuesta: any) {}
+  finalizarGuardarConexion(respuesta: any) {
+    this.grabar_localstorage(this.formProperties);
+  }
 
   irADashboard() {
     location.href = '/dashboard';
@@ -67,5 +68,9 @@ export class ConnectionPageComponent implements OnInit {
 
   showDialog() {
     this.display = true;
+  }
+
+  grabar_localstorage(data: any) {
+    localStorage.setItem('dataConection', JSON.stringify(data));
   }
 }
