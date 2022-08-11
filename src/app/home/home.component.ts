@@ -107,6 +107,7 @@ export class HomeComponent implements OnInit {
       this.mostrarErroconexion();
     }
   }
+  
   irADashboard() {
     location.href = '/dashboard';
   }
