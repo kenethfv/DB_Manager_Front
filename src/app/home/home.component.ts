@@ -140,6 +140,7 @@ export class HomeComponent implements OnInit {
       detail: 'Error de conexión, revisa tus credenciales',
     });
   }
+  
 
   //USO DE LOCAL STORAGE
 
