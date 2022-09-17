@@ -106,6 +106,7 @@ export class HomeComponent implements OnInit {
     } else if (!respuesta) {
       this.mostrarErroconexion();
     }
+    
   }
   
   irADashboard() {
