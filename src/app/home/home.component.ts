@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     private connectionService: ConnectionService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.obtenerConexiones();
@@ -71,12 +71,12 @@ export class HomeComponent implements OnInit {
       accept: () => {
         this.enviarFormulario(data);
       },
-      reject: () => {},
+      reject: () => { },
     });
   }
 
   enviarFormulario(info: any) {
-    this.infoConexion.host = info.Host ;
+    this.infoConexion.host = info.Host;
     this.infoConexion.user = info.User;
     this.infoConexion.password = info.Password;
 
@@ -106,9 +106,9 @@ export class HomeComponent implements OnInit {
     } else if (!respuesta) {
       this.mostrarErroconexion();
     }
-    
+
   }
-  
+
   irADashboard() {
     location.href = '/dashboard';
   }
@@ -141,7 +141,7 @@ export class HomeComponent implements OnInit {
       detail: 'Error de conexión, revisa tus credenciales',
     });
   }
-  
+
 
   //USO DE LOCAL STORAGE
 
