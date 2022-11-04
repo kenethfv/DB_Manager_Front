@@ -20,12 +20,16 @@ export class DashboardComponent implements OnInit {
 
   //objeto de local storage
   usuarioConectado: any = {};
+  token: string = "";
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
     let usuario = JSON.parse(localStorage.getItem('dataConection')!);
+
+  
     if (!usuario) {
+      console.log("NO SE HA ENCONTRADO USUARIO");
       location.href = '/';
     } else {
       //this.llenarTablas(this.tablas);
@@ -79,12 +83,12 @@ export class DashboardComponent implements OnInit {
     if (selectedText?.match(regSelect)) {
       //alert('running select script');
       this.dashboardService
-        .dashboardQuery(queryObject)
+        .dashboardQuery(queryObject, this.token)
         .subscribe((res: any) => this.respuestaQuery(res));
     } /*if (selectedText?.match(regDelete))*/ else {
       //alert('running delete script');
       this.dashboardService
-        .dashboardQuery(queryObject)
+        .dashboardQuery(queryObject, this.token)
         .subscribe((res: any) => this.resQuery(res));
     }
 
@@ -163,7 +167,7 @@ export class DashboardComponent implements OnInit {
     this.objeto.database = this.dbname;
 
     this.dashboardService
-      .getTables(this.objeto)
+      .getTables(this.objeto, this.token)
       .subscribe((res: any) => this.finalizarGuardar(res));
   }
 
@@ -202,7 +206,7 @@ export class DashboardComponent implements OnInit {
     this.objeto.password = this.usuarioConectado.password;
 
     this.dashboardService
-      .getDatabases(this.objeto)
+      .getDatabases(this.objeto, this.token)
       .subscribe((res: any) => this.finalizarGuardarBase(res));
   }
 
@@ -238,14 +242,15 @@ export class DashboardComponent implements OnInit {
     this.usuarioConectado = JSON.parse(localStorage.getItem('dataConection')!);
     console.log('EL USUARIO LOGUEADO ES:');
     console.log(this.usuarioConectado);
+    this.token = localStorage.getItem("token")!;
   }
 
-  cerrarSecion(){
+  cerrarSecion() {
     localStorage.removeItem('dataConection');
     location.href = '/';
   }
 
-  baseNombre(){
+  baseNombre() {
     this.llamarMetodo();
 
   }

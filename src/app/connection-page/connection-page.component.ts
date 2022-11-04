@@ -13,16 +13,19 @@ export class ConnectionPageComponent implements OnInit {
   formLogin: any = {};
   display: boolean = false;
   funciona: boolean = false;
+  token: string = "";
 
   constructor(
     public ref: DynamicDialogRef,
     private connectionService: ConnectionService,
     public config: DynamicDialogConfig
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   enviarFormulario() {
+
     let formulario: any = document.getElementById('crearConexiones');
     this.funciona = false;
 
@@ -45,9 +48,13 @@ export class ConnectionPageComponent implements OnInit {
   finalizarGuardar(respuesta: any) {
     console.log(respuesta);
     if (respuesta.message == 'Connection Success') {
+      this.grabar_localstorage(this.formProperties);
+      this.token = respuesta.signature;
+      this.grabar_token(this.token);
       this.connectionService
-        .guardarConexion(this.formProperties)
+        .guardarConexion(this.formProperties, this.token)
         .subscribe((res: any) => this.finalizarGuardarConexion(res));
+
       this.irADashboard();
     }
 
@@ -57,7 +64,7 @@ export class ConnectionPageComponent implements OnInit {
   }
 
   finalizarGuardarConexion(respuesta: any) {
-    this.grabar_localstorage(this.formProperties);
+    console.log(this.formProperties);   
     this.formProperties = {};
   }
 
@@ -71,5 +78,14 @@ export class ConnectionPageComponent implements OnInit {
 
   grabar_localstorage(data: any) {
     localStorage.setItem('dataConection', JSON.stringify(data));
+  }
+
+  // obtener_localstorage() {
+  //   this.token = localStorage.getItem("token")!;
+  //   console.log(this.token);
+  // }
+
+  grabar_token(data: any) {
+    localStorage.setItem('token', data);
   }
 }

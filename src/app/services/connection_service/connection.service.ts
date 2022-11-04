@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ConnectionService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private consumirGet(url: string): Observable<any> {
     return this.http
@@ -15,9 +15,14 @@ export class ConnectionService {
       .pipe(catchError((e) => this.manejarError(e)));
   }
 
-  private consumirPost(url: string, parametro: any): Observable<any> {
+  private consumirPost(url: string, parametro: any, token?: string): Observable<any> {
     let httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      headers: token != null ? new HttpHeaders({
+        'Content-Type': 'application/json',
+        "Authorization": token
+      }) : new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
     };
     return this.http
       .post<any>(`https://gcccnx9do8.execute-api.us-east-1.amazonaws.com/prod${url}`, parametro, httpOptions)
@@ -37,8 +42,8 @@ export class ConnectionService {
     return this.consumirPost('/login', data);
   }
 
-  guardarConexion(data: any) {
-    return this.consumirPost('/connections', data);
+  guardarConexion(data: any, token: string) {
+    return this.consumirPost('/connections', data, token);
   }
 
 }

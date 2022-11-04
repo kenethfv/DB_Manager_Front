@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   infoConexion: any = {};
   infoStorage: any = {};
+  token: String = "";
 
   constructor(
     public dialogService: DialogService,
@@ -85,6 +86,7 @@ export class HomeComponent implements OnInit {
     this.infoStorage.password = this.infoConexion.password;
     this.infoStorage.name = info.Name;
 
+
     console.log(this.infoConexion);
 
     this.connectionService
@@ -99,9 +101,10 @@ export class HomeComponent implements OnInit {
     if (respuesta.message == 'Connection Success') {
       console.log(this.infoStorage);
       this.grabar_localstorage(this.infoStorage);
+      this.token = respuesta.signature;
+      this.grabar_token(this.token);
       this.mostrarconexionExitosa();
       this.infoStorage = {};
-
       this.irADashboard();
     } else if (!respuesta) {
       this.mostrarErroconexion();
@@ -147,5 +150,9 @@ export class HomeComponent implements OnInit {
 
   grabar_localstorage(data: any) {
     localStorage.setItem('dataConection', JSON.stringify(data));
+  }
+
+  grabar_token(data: any) {
+    localStorage.setItem('token', data);
   }
 }

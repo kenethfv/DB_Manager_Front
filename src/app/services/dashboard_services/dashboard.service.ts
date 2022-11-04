@@ -9,7 +9,7 @@ import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
   providedIn: 'root',
 })
 export class DashboardService {
-  constructor(private http: HttpClient/*, private DashboardComponent: DashboardComponent*/) {}
+  constructor(private http: HttpClient/*, private DashboardComponent: DashboardComponent*/) { }
 
   //
   private consumirGet(url: string): Observable<any> {
@@ -19,9 +19,12 @@ export class DashboardService {
   }
   //
 
-  private consumirPost(url: string, parametro: any): Observable<any> {
+  private consumirPost(url: string, parametro: any, token: string): Observable<any> {
     let httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        "Authorization": token
+      }),
     };
 
     return this.http
@@ -37,7 +40,7 @@ export class DashboardService {
     const div = document.querySelector('#resultado');
     const p = document.createElement('p');
     p.className = "error";
-    for(let val in error){
+    for (let val in error) {
       let text = document.createTextNode(`${val}: ${error[val]}`)
       p.appendChild(text)
     }
@@ -45,17 +48,17 @@ export class DashboardService {
     return throwError('Ha ocurrido un error');
   }
 
-  getTables(data: any) {
-    return this.consumirPost('/tables', data);
+  getTables(data: any, token: string) {
+    return this.consumirPost('/tables', data, token);
   }
 
-  dashboardQuery(data: any) {
-    return this.consumirPost('/querys', data);
+  dashboardQuery(data: any, token: string) {
+    return this.consumirPost('/querys', data, token);
   }
 
 
-  getDatabases(data: any) {
-    return this.consumirPost('/database', data);
+  getDatabases(data: any, token: string) {
+    return this.consumirPost('/database', data, token);
   }
 
 }
