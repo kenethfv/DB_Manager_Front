@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   lang = [{ name: 5 }, { name: 10 }, { name: 15 }];
 
   conexiones = [];
+  conexion = {};
   display: boolean = false;
 
   primeraPagina: boolean = false;
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit {
   }
 
   formularioComponent() {
+    localStorage.removeItem("dataConection");
     this.ref = this.dialogService.open(ConnectionPageComponent, {
       header: 'Nueva conexión',
       width: '70%',
@@ -65,28 +67,34 @@ export class HomeComponent implements OnInit {
   }
 
   flotanteConectar(data: any) {
+    this.infoConexion.host = data.Host;
+    this.infoConexion.user = data.User;
+    this.infoConexion.password = data.Password;
+
+    this.infoStorage.host = this.infoConexion.host;
+    this.infoStorage.user = this.infoConexion.user;
+    this.infoStorage.password = this.infoConexion.password;
+    this.infoStorage.name = data.Name;
+    this.grabar_localstorage(this.infoStorage);
+
     this.confirmationService.confirm({
       message: '¿Estas seguro de establecer conexión?',
       header: 'Confirmación de conexión',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.enviarFormulario(data);
+        this.ref = this.dialogService.open(ConnectionPageComponent, {
+          header: 'Confirma conexión',
+          width: '70%',
+          contentStyle: { 'max-height': '500px', overflow: 'auto' },
+          baseZIndex: 10000,
+        });
+        //enviarFormulario();
       },
       reject: () => { },
     });
   }
 
   enviarFormulario(info: any) {
-    this.infoConexion.host = info.Host;
-    this.infoConexion.user = info.User;
-    this.infoConexion.password = info.Password;
-
-    this.infoStorage.host = this.infoConexion.host;
-    this.infoStorage.user = this.infoConexion.user;
-    this.infoStorage.password = this.infoConexion.password;
-    this.infoStorage.name = info.Name;
-
-
     console.log(this.infoConexion);
 
     this.connectionService
@@ -100,7 +108,6 @@ export class HomeComponent implements OnInit {
     console.log(respuesta);
     if (respuesta.message == 'Connection Success') {
       console.log(this.infoStorage);
-      this.grabar_localstorage(this.infoStorage);
       this.token = respuesta.signature;
       this.grabar_token(this.token);
       this.mostrarconexionExitosa();
