@@ -45,7 +45,9 @@ export class DashboardComponent implements OnInit {
         let addTextToResult: string = ((<HTMLInputElement>(
           document.getElementById('resultado')
         )).value = selectedText || '');
+        console.log(selectedText);
       }
+      
 
       //
       this.obtener_localStorage();
@@ -92,9 +94,6 @@ export class DashboardComponent implements OnInit {
         .subscribe((res: any) => this.resQuery(res));
     }
 
-    /*let limpiaTexto = 'Answer from service will go here ';
-      let agrega = ((<HTMLInputElement>document.getElementById('result')).value =
-      limpiaTexto);*/
   }
 
   respuestaQuery(respuesta: any) {
